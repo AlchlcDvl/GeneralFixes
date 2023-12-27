@@ -14,6 +14,7 @@ public static class ExitGamePatch
 }
 
 [HarmonyPatch(typeof(RoleService), nameof(RoleService.Init))]
+[HarmonyPriority(Priority.VeryHigh)]
 public static class PatchRoleService
 {
     public static void Postfix(RoleService __instance)

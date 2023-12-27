@@ -1,0 +1,9 @@
+{
+  "HarmonyId": "alchlcsystm.fixes",
+  "DisplayName": "General Fixes",
+  "Authors": [ "AlchlcSystm" ],
+  "Description": "The mod that fixes things!",
+  "Version": "1.0.0",
+  "Discord": "https://discord.gg/cd27aDQDY9",
+  "Platforms": [ "Windows", "Mac" ]
+}

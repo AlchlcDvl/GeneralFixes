@@ -17,6 +17,7 @@ public class Fixes
     public static Sprite CursedSoul;
     public static Sprite GhostTown;
     public static Sprite Vampire;
+    public static Sprite Jester;
 
     public void Start()
     {
@@ -33,6 +34,8 @@ public class Fixes
                     Vampire = sprite;
                 else if (x.Contains("GhostTown"))
                     GhostTown = sprite;
+                else if (x.Contains("Jester"))
+                    Jester = sprite;
             }
         });
 

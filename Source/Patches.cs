@@ -1,5 +1,6 @@
 using Game.Services;
 using Home.Shared;
+using Home.Services;
 
 namespace Fixes;
 
@@ -23,6 +24,17 @@ public static class PatchRoleService
         __instance.roleInfoLookup[Role.VAMPIRE].sprite = Fixes.Vampire;
         __instance.roleInfoLookup[Role.CURSED_SOUL].sprite = Fixes.CursedSoul;
         __instance.roleInfoLookup[Role.GHOST_TOWN].sprite = Fixes.GhostTown;
+    }
+}
+
+[HarmonyPatch(typeof(HomeScrollService), nameof(HomeScrollService.Init))]
+[HarmonyPriority(Priority.VeryHigh)]
+public static class PatchScrollService
+{
+    public static void Postfix(HomeScrollService __instance)
+    {
+        Fixes.LogMessage("Patching RoleService.Init");
+        __instance.scrollInfoLookup_[(int)Role.JESTER].decoration.sprite = Fixes.Jester;
     }
 }
 
@@ -55,6 +67,7 @@ public static class FixApocNaming
 }
 
 [HarmonyPatch(typeof(RoleCardPanelBackground), nameof(RoleCardPanelBackground.SetRole))]
+[HarmonyPriority(Priority.VeryHigh)]
 public static class PatchRoleCards
 {
     public static void Postfix(RoleCardPanelBackground __instance, ref Role role)
@@ -73,6 +86,10 @@ public static class PatchRoleCards
             };
         }
 
-        __instance.GetComponentInParent<RoleCardPanel>().roleNameText.text = role.DisplayString(__instance.currentFaction);
+        var panel = __instance.GetComponentInParent<RoleCardPanel>();
+        panel.roleNameText.text = role.DisplayString(__instance.currentFaction);
+
+        if (role == Role.JESTER)
+            (panel.roleIcon.sprite, panel.roleInfoButtons[0].abilityIcon.sprite) = (panel.roleInfoButtons[0].abilityIcon.sprite, panel.roleIcon.sprite);
     }
 }

@@ -1,49 +1,14 @@
-using Game.Services;
 using Home.Shared;
-using Home.Services;
+using Witchcraft.Utils;
 
 namespace Fixes;
-
-[HarmonyPatch(typeof(ApplicationController), nameof(ApplicationController.QuitGame))]
-public static class ExitGamePatch
-{
-    public static void Prefix()
-    {
-        Fixes.LogMessage("Patching ApplicationController.QuitGame");
-        Utils.SaveLogs();
-    }
-}
-
-[HarmonyPatch(typeof(RoleService), nameof(RoleService.Init))]
-[HarmonyPriority(Priority.VeryHigh)]
-public static class PatchRoleService
-{
-    public static void Postfix(RoleService __instance)
-    {
-        Fixes.LogMessage("Patching RoleService.Init");
-        __instance.roleInfoLookup[Role.VAMPIRE].sprite = Fixes.Vampire;
-        __instance.roleInfoLookup[Role.CURSED_SOUL].sprite = Fixes.CursedSoul;
-        __instance.roleInfoLookup[Role.GHOST_TOWN].sprite = Fixes.GhostTown;
-    }
-}
-
-[HarmonyPatch(typeof(HomeScrollService), nameof(HomeScrollService.Init))]
-[HarmonyPriority(Priority.VeryHigh)]
-public static class PatchScrollService
-{
-    public static void Postfix(HomeScrollService __instance)
-    {
-        Fixes.LogMessage("Patching RoleService.Init");
-        __instance.scrollInfoLookup_[(int)Role.JESTER].decoration.sprite = Fixes.Jester;
-    }
-}
 
 [HarmonyPatch(typeof(TosAbilityPanelListItem), nameof(TosAbilityPanelListItem.SetKnownRole))]
 public static class FixApocNaming
 {
     public static void Postfix(TosAbilityPanelListItem __instance, ref Role role)
     {
-        Fixes.LogMessage("Patching TosAbilityPanelListItem.SetKnownRole");
+        Logging.LogMessage("Patching TosAbilityPanelListItem.SetKnownRole");
 
         if (role != Pepper.GetMyRole() || !role.IsApoc())
             return;
@@ -72,7 +37,7 @@ public static class PatchRoleCards
 {
     public static void Postfix(RoleCardPanelBackground __instance, ref Role role)
     {
-        Fixes.LogMessage("Patching RoleCardPanelBackground.SetRole");
+        Logging.LogMessage("Patching RoleCardPanelBackground.SetRole");
 
         if (Constants.IsTransformed)
         {

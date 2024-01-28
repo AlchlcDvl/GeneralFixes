@@ -33,7 +33,7 @@
         <Reference Include="SalemModLoader"><HintPath>Lib\SalemModLoader.dll</HintPath></Reference>
         <Reference Include="Unity.TextMeshPro"><HintPath>Lib\Unity.TextMeshPro.dll</HintPath></Reference>
         <Reference Include="Newtonsoft.Json"><HintPath>Lib\Newtonsoft.Json.dll</HintPath></Reference>
-        <Reference Include="BepInEx"><HintPath>Lib\BepInEx.dll</HintPath></Reference>
+        <Reference Include="Witchcraft"><HintPath>Lib\Witchcraft.dll</HintPath></Reference>
     </ItemGroup>
 
     <Target Name="Copy" AfterTargets="Build" Condition="'$(TOS)' != ''">

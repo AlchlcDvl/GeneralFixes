@@ -28,17 +28,5 @@ public static class Utils
         return $"<color={role.GetFaction().GetFactionColor()}FF>{text}</color>{text2}";
     }
 
-    public static void SaveLogs()
-    {
-        try
-        {
-            File.WriteAllText(Path.Combine(Fixes.ModPath, "FixesLogs.txt"), Fixes.SavedLogs);
-        }
-        catch
-        {
-            Fixes.LogError("Unable to save logs");
-        }
-    }
-
     public static bool IsApoc(this Role role) => role is Role.BERSERKER or Role.WAR or Role.BAKER or Role.FAMINE or Role.SOULCOLLECTOR or Role.DEATH or Role.PLAGUEBEARER or Role.PESTILENCE;
 }

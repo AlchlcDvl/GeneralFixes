@@ -5,5 +5,6 @@
   "Description": "The mod that fixes things!",
   "Version": "1.0.1",
   "Discord": "https://discord.gg/cd27aDQDY9",
-  "Platforms": [ "Windows", "Mac" ]
+  "Platforms": [ "Windows", "Mac" ],
+  "RequiredMods": [ "alchlcsystm.witchcraft" ]
 }

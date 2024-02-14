@@ -9,7 +9,7 @@ public class Fixes
 {
     public void Start()
     {
-        Logging.InitVoid("Fixes");
+        Logging.InitVoid("GeneralFixes");
         Logging.LogMessage("Fixed!", true);
     }
 }

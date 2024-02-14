@@ -64,4 +64,22 @@ public static class Constants
                 return "#06E00C";
         }
     }
+    public static bool BTOS2Exists => ModStates.IsLoaded("curtis.tuba.better.tos2");
+    public static bool IsBTOS2
+    {
+        get
+        {
+            try
+            {
+                if (BTOS2Exists)
+                    return BetterTOS2.BTOSInfo.IS_MODDED;
+                else
+                    return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
 }

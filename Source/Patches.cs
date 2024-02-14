@@ -37,6 +37,9 @@ public static class PatchRoleCards
 {
     public static void Postfix(RoleCardPanelBackground __instance, ref Role role)
     {
+        if (Constants.IsBTOS2)
+            return;
+
         Logging.LogMessage("Patching RoleCardPanelBackground.SetRole");
 
         if (Constants.IsTransformed)

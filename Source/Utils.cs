@@ -26,7 +26,7 @@ public static class Utils
         if (text2.Length > 0)
             text2 = $"<size=85%>{text2}</size>";
 
-        return $"<color={role.GetFaction().GetFactionColor()}FF>{text}</color>{text2}";
+        return $"<color={factionType.GetFactionColor()}FF>{text}</color>{text2}";
     }
 
     public static bool IsApoc(this Role role) => role is Role.BERSERKER or Role.WAR or Role.BAKER or Role.FAMINE or Role.SOULCOLLECTOR or Role.DEATH or Role.PLAGUEBEARER or Role.PESTILENCE;

@@ -45,7 +45,9 @@ public static class PatchRoleCards
         }
 
         var panel = __instance.GetComponentInParent<RoleCardPanel>();
-        panel.roleNameText.text = role.DisplayString(__instance.currentFaction, !Constants.IsBTOS2);
+
+        if (!Constants.IsBTOS2)
+            panel.roleNameText.text = role.DisplayString(__instance.currentFaction, !Constants.IsBTOS2);
 
         if (role == Role.JESTER)
             (panel.roleIcon.sprite, panel.roleInfoButtons[0].abilityIcon.sprite) = (panel.roleInfoButtons[0].abilityIcon.sprite, panel.roleIcon.sprite);

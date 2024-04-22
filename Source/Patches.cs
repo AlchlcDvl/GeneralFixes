@@ -1,6 +1,3 @@
-using Home.Shared;
-using Witchcraft.Utils;
-
 namespace Fixes;
 
 [HarmonyPatch(typeof(TosAbilityPanelListItem), nameof(TosAbilityPanelListItem.SetKnownRole))]
@@ -8,8 +5,6 @@ public static class FixApocNaming
 {
     public static void Postfix(TosAbilityPanelListItem __instance, ref Role role)
     {
-        Logging.LogMessage("Patching TosAbilityPanelListItem.SetKnownRole");
-
         if (role != Pepper.GetMyRole() || !role.IsApoc())
             return;
 
@@ -37,11 +32,6 @@ public static class PatchRoleCards
 {
     public static void Postfix(RoleCardPanelBackground __instance, ref Role role)
     {
-        if (Constants.IsBTOS2)
-            return;
-
-        Logging.LogMessage("Patching RoleCardPanelBackground.SetRole");
-
         if (Constants.IsTransformed)
         {
             role = role switch
@@ -55,9 +45,22 @@ public static class PatchRoleCards
         }
 
         var panel = __instance.GetComponentInParent<RoleCardPanel>();
-        panel.roleNameText.text = role.DisplayString(__instance.currentFaction);
+        panel.roleNameText.text = role.DisplayString(__instance.currentFaction, !Constants.IsBTOS2);
 
         if (role == Role.JESTER)
             (panel.roleIcon.sprite, panel.roleInfoButtons[0].abilityIcon.sprite) = (panel.roleInfoButtons[0].abilityIcon.sprite, panel.roleIcon.sprite);
+    }
+}
+
+[HarmonyPatch(typeof(TosAbilityPanelListItem), nameof(TosAbilityPanelListItem.OverrideIconAndText))]
+[HarmonyPriority(Priority.VeryHigh)]
+public static class TosAbilityPanelListItem_OverrideIconAndTextFix
+{
+    public static void Postfix(TosAbilityPanelListItem __instance, ref TosAbilityPanelListItem.OverrideAbilityType overrideType)
+    {
+        if (overrideType != TosAbilityPanelListItem.OverrideAbilityType.NECRO_ATTACK || Pepper.GetMyRole() != Role.ILLUSIONIST)
+            return;
+
+        __instance.choice1Sprite.sprite = Witchcraft.Witchcraft.Assets["Illusionist_Ability"];;
     }
 }

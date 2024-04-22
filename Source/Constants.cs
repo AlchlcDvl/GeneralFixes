@@ -71,10 +71,7 @@ public static class Constants
         {
             try
             {
-                if (BTOS2Exists)
-                    return BetterTOS2.BTOSInfo.IS_MODDED;
-                else
-                    return false;
+                return IsBTOS2Bypass();
             }
             catch
             {
@@ -82,4 +79,5 @@ public static class Constants
             }
         }
     }
+    private static bool IsBTOS2Bypass() => BTOS2Exists && BetterTOS2.BTOSInfo.IS_MODDED;
 }

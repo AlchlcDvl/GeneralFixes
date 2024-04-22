@@ -3,7 +3,7 @@
   "DisplayName": "General Fixes",
   "Authors": [ "AlchlcSystm" ],
   "Description": "The mod that fixes some UI related bugs!",
-  "Version": "1.0.2",
+  "Version": "1.0.3",
   "Discord": "https://discord.gg/cd27aDQDY9",
   "Platforms": [ "Windows", "Mac" ],
   "RequiredMods": [ "alchlcsystm.witchcraft" ]

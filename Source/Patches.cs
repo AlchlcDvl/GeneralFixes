@@ -63,6 +63,6 @@ public static class TosAbilityPanelListItem_OverrideIconAndTextFix
         if (overrideType != TosAbilityPanelListItem.OverrideAbilityType.NECRO_ATTACK || Pepper.GetMyRole() != Role.ILLUSIONIST)
             return;
 
-        __instance.choice1Sprite.sprite = Witchcraft.Witchcraft.Assets["Illusionist_Ability"];;
+        __instance.choice1Sprite.sprite = Fixes.IlluAbility;
     }
 }
